@@ -9,11 +9,12 @@ import SwiftUI
 
 struct FiltersView: View {
     
-    @ObservedObject var viewModel: MainViewModel
     @Environment(\.dismiss) private var dismiss
     
-    @State private var fromDate: Date = Date.now
-    @State private var toDate: Date = Date.now
+    @ObservedObject var viewModel: MainViewModel
+    
+    @State private var fromDate: Date = Date()
+    @State private var toDate: Date = Date()
     @State private var showWarning: Bool = false
     
     private let dateFormatter: DateFormatter = {
@@ -52,19 +53,20 @@ struct FiltersView: View {
         }
         .padding(.top, 40)
         .padding(.horizontal)
+        .task {
+            fromDate = viewModel.fromDate
+            toDate = viewModel.toDate
+        }
     }
     
     private func handleApply() {
         if toDate == fromDate || toDate > fromDate {
-            viewModel.fromDate = dateFormatter.string(from: fromDate)
-            viewModel.toDate = dateFormatter.string(from: toDate)
+            viewModel.fromDate = fromDate
+            viewModel.toDate = toDate
 
             Task {
                 await viewModel.search()
             }
-            
-            print("From: \(dateFormatter.string(from: fromDate))")
-            print("To: \(dateFormatter.string(from: toDate))")
             
             dismiss()
         } else {

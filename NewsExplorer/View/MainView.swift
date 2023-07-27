@@ -26,13 +26,18 @@ struct MainView: View {
                 await viewModel.getRecentNews()
             }
             .onSubmit(of: .search, {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     handleSearch()
                 }
             })
             .searchable(text: $viewModel.searchText)
             .onChange(of: viewModel.searchText, perform: { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    handleSearch()
+                }
+            })
+            .onChange(of: viewModel.sortingSelected, perform: { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     handleSearch()
                 }
             })
@@ -42,8 +47,18 @@ struct MainView: View {
             .navigationTitle("News")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        isShowFilters.toggle()
+                    Menu {
+                        Button("Period") {
+                            isShowFilters.toggle()
+                        }
+                        
+                        Menu("Sort By") {
+                            Picker("", selection: $viewModel.sortingSelected) {
+                                ForEach(viewModel.sortingTypes, id: \.self) {
+                                    Text($0.rawValue)
+                                }
+                            }
+                        }
                     } label: {
                         Image(systemName: "slider.horizontal.3")
                     }

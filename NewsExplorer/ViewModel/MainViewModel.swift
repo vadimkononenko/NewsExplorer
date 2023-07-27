@@ -15,8 +15,11 @@ class MainViewModel: ObservableObject {
     @Published var articles: [Article] = []
     @Published var isLoading: Bool = true
     @Published var searchText: String = ""
-    @Published var fromDate: String = "2023-07-11"
-    @Published var toDate: String = "2023-07-13"
+    @Published var fromDate: Date = (Calendar.current.date(byAdding: .month, value: -1, to: Date()) ?? Date())
+    @Published var toDate: Date = Date()
+    @Published var sortingSelected: SortingType = .publishedAt
+    
+    let sortingTypes: [SortingType] = [.publishedAt, .popularity, .relevancy]
     
     func getRecentNews() async {
         do {
@@ -30,21 +33,24 @@ class MainViewModel: ObservableObject {
     func search() async {
         do {
             isLoading = true
-            articles = try await newsService.searchNews(phrase: searchText, from: fromDate, to: toDate)
+            articles = try await newsService.searchNews(phrase: searchText,
+                                                        from: formatDate(date: fromDate),
+                                                        to: formatDate(date: toDate),
+                                                        sortBy: sortingSelected)
             isLoading = false
         } catch {
             print(error)
         }
     }
     
-    func searchForPeriod() async {
-        do {
-            isLoading = true
-            articles = try await newsService.searchNews(phrase: searchText, from: fromDate, to: toDate)
-            isLoading = false
-        } catch {
-            print(error)
-        }
+    func formatDate(date: Date) -> String {
+        let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            return formatter
+        }()
+        
+        return dateFormatter.string(from: date)
     }
     
 }
