@@ -19,6 +19,7 @@
 		A74DB31B2A7297C700518298 /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DB31A2A7297C700518298 /* NewsListView.swift */; };
 		A74DB31F2A7298B900518298 /* ArticleItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DB31E2A7298B900518298 /* ArticleItemView.swift */; };
 		A74DB3232A72BCF100518298 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74DB3222A72BCF100518298 /* FiltersView.swift */; };
+		A78FE30D2A7385E40006A40F /* DetailArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78FE30C2A7385E40006A40F /* DetailArticleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		A74DB31A2A7297C700518298 /* NewsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
 		A74DB31E2A7298B900518298 /* ArticleItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleItemView.swift; sourceTree = "<group>"; };
 		A74DB3222A72BCF100518298 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
+		A78FE30C2A7385E40006A40F /* DetailArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailArticleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				A74DB31A2A7297C700518298 /* NewsListView.swift */,
 				A74DB31E2A7298B900518298 /* ArticleItemView.swift */,
 				A74DB3222A72BCF100518298 /* FiltersView.swift */,
+				A78FE30C2A7385E40006A40F /* DetailArticleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				A74DB3192A72687000518298 /* MainViewModel.swift in Sources */,
 				A74DB31B2A7297C700518298 /* NewsListView.swift in Sources */,
 				A74DB3102A72394300518298 /* NewsService.swift in Sources */,
+				A78FE30D2A7385E40006A40F /* DetailArticleView.swift in Sources */,
 				A74DB3172A72683E00518298 /* MainView.swift in Sources */,
 				A74DB3232A72BCF100518298 /* FiltersView.swift in Sources */,
 				A74DB3002A72387B00518298 /* ContentView.swift in Sources */,

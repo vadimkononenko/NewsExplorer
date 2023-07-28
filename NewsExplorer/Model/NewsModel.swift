@@ -27,6 +27,14 @@ struct Article: Codable {
     var id: String {
         title + url
     }
+    
+    var formattedPublishedAt: String {
+        guard let date = try? Date(publishedAt, strategy: .iso8601) else { return ""}
+        
+        let formattedDate = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)
+        
+        return formattedDate
+    }
 }
 
 // MARK: - Source

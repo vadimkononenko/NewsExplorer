@@ -17,7 +17,12 @@ struct NewsListView: View {
                 .font(.title2)
         } else {
             List(viewModel.articles, id: \.id) { article in
-                ArticleItemView(article: article)
+                NavigationLink {
+                    DetailArticleView(article: article)
+                } label: {
+                    ArticleItemView(article: article)
+                }
+
             }
             .listStyle(.plain)
         }
