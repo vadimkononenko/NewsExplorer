@@ -17,7 +17,7 @@ class MainViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var fromDate: Date = (Calendar.current.date(byAdding: .month, value: -1, to: Date()) ?? Date())
     @Published var toDate: Date = Date()
-    @Published var sortingSelected: SortingType = .publishedAt
+    @Published var sortingSelected: SortingType = .popularity
     
     let sortingTypes: [SortingType] = [.publishedAt, .popularity, .relevancy]
     
