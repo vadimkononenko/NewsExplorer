@@ -1,0 +1,1 @@
+# NewsExplorer (test task)
