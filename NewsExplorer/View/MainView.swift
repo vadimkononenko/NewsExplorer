@@ -23,23 +23,14 @@ struct MainView: View {
                 }
             }
             .task {
-                await viewModel.getRecentNews()
+                handleSearch()
             }
-            .onSubmit(of: .search, {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    handleSearch()
-                }
-            })
             .searchable(text: $viewModel.searchText)
             .onChange(of: viewModel.searchText, perform: { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    handleSearch()
-                }
+                handleSearch()
             })
             .onChange(of: viewModel.sortingSelected, perform: { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    handleSearch()
-                }
+                handleSearch()
             })
             .sheet(isPresented: $isShowFilters) {
                 FiltersView(viewModel: viewModel)
@@ -53,7 +44,7 @@ struct MainView: View {
                         }
                         
                         Menu("Sort By") {
-                            Picker("", selection: $viewModel.sortingSelected) {
+                            Picker("Sort", selection: $viewModel.sortingSelected) {
                                 ForEach(viewModel.sortingTypes, id: \.self) {
                                     Text($0.rawValue)
                                 }

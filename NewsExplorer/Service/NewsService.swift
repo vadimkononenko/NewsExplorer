@@ -10,7 +10,7 @@ import Foundation
 enum SortingType: String, CaseIterable {
     case relevancy
     case popularity
-    case publishedAt
+    case publishedAt = "publishedAt"
 }
 
 class NewsService {
@@ -25,21 +25,21 @@ class NewsService {
     /// This function gets a list of news articles from the news API.
     /// - Returns: A list of articles.
     /// - Throws: `NewsError.invalidUrl` if the URL is invalid.
-    func getNews() async throws -> [Article] {
-        let parametrs = [
-            "q": "Apple",
-            "apiKey": API_KEY
-        ]
-        
-        var urlComponents = URLComponents(string: BASE_URL)
-        urlComponents?.queryItems = parametrs.map { URLQueryItem(name: $0.key, value: $0.value) }
-        
-        guard let url = urlComponents?.url else {
-            throw NewsError.invalidUrl
-        }
-        
-        return try await handleRequest(with: url)
-    }
+//    func getNews() async throws -> [Article] {
+//        let parametrs = [
+//            "q": "Apple",
+//            "apiKey": API_KEY
+//        ]
+//
+//        var urlComponents = URLComponents(string: BASE_URL)
+//        urlComponents?.queryItems = parametrs.map { URLQueryItem(name: $0.key, value: $0.value) }
+//
+//        guard let url = urlComponents?.url else {
+//            throw NewsError.invalidUrl
+//        }
+//
+//        return try await handleRequest(with: url)
+//    }
     
     /// This function searches for news articles that match the given phrase, and optionally, a date range.
     /// - Parameters:
@@ -55,6 +55,29 @@ class NewsService {
             "apiKey": API_KEY,
             "from": fromDate,
             "to": toDate,
+            "sortBy": sorting.rawValue
+        ]
+        
+        var urlComponents = URLComponents(string: BASE_URL)
+        urlComponents?.queryItems = parametrs.map { URLQueryItem(name: $0.key, value: $0.value) }
+        
+        guard let url = urlComponents?.url else {
+            throw NewsError.invalidUrl
+        }
+        
+        return try await handleRequest(with: url)
+    }
+    
+    /// This function searches for news articles that match the given phrase, and optionally, a date range.
+    /// - Parameters:
+    ///   - phrase: The phrase to search for.
+    ///   - sorting: The sorting type
+    /// - Returns: A list of articles that match the given phrase and date range.
+    /// - Throws: `NewsError.invalidUrl` if the URL is invalid.
+    func searchNews(phrase: String, sortBy sorting: SortingType) async throws -> [Article] {
+        let parametrs = [
+            "q": phrase.isEmpty ? "Apple" : phrase,
+            "apiKey": API_KEY,
             "sortBy": sorting.rawValue
         ]
         

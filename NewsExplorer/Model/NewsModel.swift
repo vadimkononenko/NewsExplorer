@@ -24,8 +24,8 @@ struct Article: Codable {
     let publishedAt: String
     let content: String
     
-    var id: String {
-        title + url
+    var id: UUID {
+        UUID()
     }
     
     var formattedPublishedAt: String {
