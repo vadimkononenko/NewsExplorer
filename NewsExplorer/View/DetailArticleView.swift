@@ -49,8 +49,7 @@ struct DetailArticleView: View {
             } placeholder: {
                 Color.gray
             }
-            .frame(height: 200)
-            .frame(maxWidth: .infinity)
+            .frame(width: UIScreen.main.bounds.width - 40, height: 200)
             .cornerRadius(20)
             .padding(.vertical)
             
