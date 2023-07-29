@@ -15,7 +15,7 @@ class MainViewModel: ObservableObject {
     @Published var articles: [Article] = []
     @Published var isLoading: Bool = true
     @Published var searchText: String = ""
-    @Published var fromDate: Date = (Calendar.current.date(byAdding: .month, value: -1, to: Date()) ?? Date())
+    @Published var fromDate: Date = (Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date())
     @Published var toDate: Date = Date()
     @Published var sortingSelected: SortingType = .publishedAt
     
