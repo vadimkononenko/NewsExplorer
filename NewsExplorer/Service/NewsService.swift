@@ -22,25 +22,6 @@ class NewsService {
         case invalidUrl, unableToComplete, invalidData, responseError, decodingProblem, dateRecievingProblem
     }
     
-    /// This function gets a list of news articles from the news API.
-    /// - Returns: A list of articles.
-    /// - Throws: `NewsError.invalidUrl` if the URL is invalid.
-//    func getNews() async throws -> [Article] {
-//        let parametrs = [
-//            "q": "Apple",
-//            "apiKey": API_KEY
-//        ]
-//
-//        var urlComponents = URLComponents(string: BASE_URL)
-//        urlComponents?.queryItems = parametrs.map { URLQueryItem(name: $0.key, value: $0.value) }
-//
-//        guard let url = urlComponents?.url else {
-//            throw NewsError.invalidUrl
-//        }
-//
-//        return try await handleRequest(with: url)
-//    }
-    
     /// This function searches for news articles that match the given phrase, and optionally, a date range.
     /// - Parameters:
     ///   - phrase: The phrase to search for.

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct MainView: View {
     
     @StateObject private var viewModel = MainViewModel()
@@ -21,9 +20,6 @@ struct MainView: View {
                 } else {
                     NewsListView(viewModel: viewModel)
                 }
-            }
-            .task {
-                handleSearch()
             }
             .searchable(text: $viewModel.searchText)
             .onChange(of: viewModel.searchText, perform: { _ in

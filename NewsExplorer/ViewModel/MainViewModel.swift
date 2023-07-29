@@ -21,6 +21,12 @@ class MainViewModel: ObservableObject {
     
     let sortingTypes: [SortingType] = [.publishedAt, .popularity, .relevancy]
     
+    init() {
+        Task {
+            await search()
+        }
+    }
+    
     func search() async {
         do {
             isLoading = true
